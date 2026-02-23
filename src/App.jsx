@@ -10,6 +10,16 @@ const books = [
   { id: 4, title: 'Circe', author: 'Madeline Miller', isRead: false }
 ]
 
+function PageHeader () {
+  return(
+    <div>
+      <h1>Carson's Bookshelf</h1>
+      <h3>Info about the books on my shelf!</h3>
+      <p>Color code: green for read books, yellow for unread books</p>
+    </div>
+  )
+}
+
 function Shelf () {
   const listBooks = books.map(book => 
     <li
@@ -24,6 +34,16 @@ function Shelf () {
   return (<ul>{listBooks}</ul>) 
 }
 
+function BookCount () {
+  const total = books.length
+  const readBooks = books.filter(book => book.isRead).length;
+  return (
+    <div>
+      <p> Carson has read {readBooks} out of the {total} books on his shelf!</p>
+    </div>
+  );
+}
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -31,8 +51,9 @@ function App() {
     <>
       <h1>This is Carson's React Application</h1>
       <div className="card">
+        <PageHeader />
         <Shelf />
-        
+        <BookCount />
       </div>
     </>
   )
